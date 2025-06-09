@@ -20,9 +20,9 @@ public class PaintScript : MonoBehaviour
     public Material brushMatSrc;
     public Material clearMat;
 
-    public RenderTexture rt1;
-    public RenderTexture rt2;
-    public Material brushMat;
+    private RenderTexture rt1;
+    private RenderTexture rt2;
+    private Material brushMat;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -32,14 +32,17 @@ public class PaintScript : MonoBehaviour
         
         rt2 = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGB32);
         rt2.Create();
-
-        
-        targetRenderer.material.SetTexture("_BaseMap", rt1);
         
         brushMat = new Material(brushMatSrc);
         brushMat.name += "(Clone)";
         
         this.Clear();
+    }
+
+    public void SetBrush(Color color, float radius)
+    {
+        brushMat.color = color;
+        brushMat.SetFloat("_Radius", radius);
     }
 
     public void Clear()
@@ -81,7 +84,6 @@ public class PaintScript : MonoBehaviour
         }
         
         var uv = hit.textureCoord;
-
         PointUtils.GetLerpedPoints(_lastHit ?? uv, uv, minBrushDistance, DrawPoint);
         _lastHit = uv;
         

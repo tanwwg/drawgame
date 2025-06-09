@@ -19,8 +19,7 @@ public class PaintSelector : MonoBehaviour
 
     public void Select()
     {
-        paint.brushMat.color = color;
-        paint.brushMat.SetFloat("_Radius", brushSize);
+        paint.SetBrush(color, brushSize);
         
         this.GetComponent<Animator>().SetInteger("sel", 1);
     }

@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 280638034}
   - component: {fileID: 280638033}
   m_Layer: 0
-  m_Name: PaintHolder (1)
+  m_Name: EraseColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,13 +351,13 @@ MonoBehaviour:
   yVec: {x: 0, y: 0, z: -0.7}
   colors:
   - {r: 0, g: 0, b: 0, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.7019608, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   fabs:
   - {fileID: 280638034}
 --- !u!95 &576981445 stripped
@@ -1231,9 +1231,6 @@ MonoBehaviour:
   targetRenderer: {fileID: 1240119485}
   brushMatSrc: {fileID: 2100000, guid: 49d11147b91f94eef90f84e81874c427, type: 2}
   clearMat: {fileID: 2100000, guid: 9b037d96314d94a75b6ef29d2ef970be, type: 2}
-  rt1: {fileID: 0}
-  rt2: {fileID: 0}
-  brushMat: {fileID: 0}
 --- !u!1 &1339149452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1339149453
 BoxCollider:
   m_ObjectHideFlags: 0

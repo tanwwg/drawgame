@@ -4,6 +4,7 @@ Shader "Custom/BrushShader" {
         _UV ("UV", Vector) = (0,0,0,0)
         _Color ("Color", Color) = (1,0,0,1)
         _Radius ("Radius", Float) = 0.05
+        _Hardness ("Hardness", Float) = 0.1
     }
     SubShader {
         Pass {
@@ -15,6 +16,7 @@ Shader "Custom/BrushShader" {
             float4 _UV;
             float4 _Color;
             float _Radius;
+            float _Hardness;
 
             struct appdata
             {
@@ -37,6 +39,16 @@ Shader "Custom/BrushShader" {
             fixed4 frag(v2f i) : SV_Target {
                 float dist = distance(i.uv, _UV.xy);
                 fixed4 col = tex2D(_MainTex, i.uv);
+
+                // if (dist < _Radius)
+                // {
+                //     return lerp(_Color, col, _Hardness);
+                // }
+                // else
+                // {
+                //     return col;
+                // }
+                
                 float alpha = step(_Radius, dist);
                 return lerp(_Color, col, alpha);
             }
