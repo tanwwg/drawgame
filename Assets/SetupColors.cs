@@ -11,14 +11,12 @@ public class SetupColors : MonoBehaviour
 
     public Color[] colors;
 
-    private List<PaintSelector> fabs { get; set; }
+    public List<PaintSelector> fabs;
 
     
 
     public void Start()
     {
-        fabs = new();
-        
         for (var i = 0; i < colors.Length; i++)
         {
             var fab = Instantiate(prefab, prefabParent);
@@ -27,11 +25,11 @@ public class SetupColors : MonoBehaviour
             var x = i % 2;
             var y = i / 2;
             fab.transform.localPosition = xVec * x + yVec * y;
-            fab.GetComponent<MeshRenderer>().material.color = colors[i];
+            fab.Setup(colors[i]);
             
             fabs.Add(fab);
         }
-        fabs[0].Select();
+        fabs[1].Select();
     }
 
     public void Deselect()

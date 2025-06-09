@@ -5,12 +5,22 @@ public class PaintSelector : MonoBehaviour
 {
     public PaintScript paint;
 
+    public MeshRenderer targetRenderer;
+
+    public Color color;
+
+    public float brushSize;
+
+    public void Setup(Color color)
+    {
+        this.color = color;
+        targetRenderer.material.color = color;
+    }
+
     public void Select()
     {
-        var color = this.GetComponent<MeshRenderer>().material.color;
         paint.brushMat.color = color;
-        
-        this.transform.localScale = Vector3.one;
+        paint.brushMat.SetFloat("_Radius", brushSize);
         
         this.GetComponent<Animator>().SetInteger("sel", 1);
     }
