@@ -25,7 +25,7 @@ public class PaintScript : MonoBehaviour
     public Material brushMat;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rt1 = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGB32);
         rt1.Create();
@@ -39,7 +39,14 @@ public class PaintScript : MonoBehaviour
         brushMat = new Material(brushMatSrc);
         brushMat.name += "(Clone)";
         
-        Graphics.Blit(null, rt1, clearMat);
+        this.Clear();
+    }
+
+    public void Clear()
+    {
+        Graphics.Blit(null, rt2, clearMat);
+        targetRenderer.material.SetTexture("_BaseMap", rt2);
+        (rt2, rt1) = (rt1, rt2);
     }
     
     void OnDestroy()
@@ -86,6 +93,7 @@ public class PaintScript : MonoBehaviour
         brushMat.SetTexture("_MainTex", rt1);
         brushMat.SetVector(CenterUV, point);
         Graphics.Blit(null, rt2, brushMat);
+        targetRenderer.material.SetTexture("_BaseMap", rt2);
         (rt2, rt1) = (rt1, rt2);
     }
 }
